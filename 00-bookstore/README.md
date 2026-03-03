@@ -1,10 +1,11 @@
-# 01-bookstore
+# 00-bookstore
 
 This project is a simple storage for books.
 
 The books are stored with `id`, `title`, `author`, `price`, and `imageurl`
 
 The library is stored as a `.json` file to allow persistence between calls of the binary
+The name of said library is declared as a `const` in `bookstore.go`
 
 ## Usage
 
@@ -36,12 +37,12 @@ ID	Title		Author	Price	ImageURL
 ```bash
 > ./bookstore help
 # Output
---- Bookstore Help ---
-get --all: Return all books in library
-get --id X: Return book X from library
-add X: Add book to library
-update: Update book in library
-delete: Delete book from library
+# --- Bookstore Help ---
+# get --all: Return all books in library
+# get --id X: Return book X from library
+# add: Add book to library
+# update: Update book in library
+# delete: Delete book from library
 ```
 ![](img/add.png)
 

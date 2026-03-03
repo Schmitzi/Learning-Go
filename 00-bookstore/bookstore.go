@@ -46,7 +46,7 @@ func help() {
 	fmt.Println("--- Bookstore Help ---")
 	fmt.Println("get --all: Return all books in library")
 	fmt.Println("get --id X: Return book X from library")
-	fmt.Println("add X: Add book to library")
+	fmt.Println("add: Add book to library")
 	fmt.Println("update: Update book in library")
 	fmt.Println("delete: Delete book from library")
 
