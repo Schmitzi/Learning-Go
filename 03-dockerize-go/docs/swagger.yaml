@@ -1,0 +1,157 @@
+basePath: /
+definitions:
+  main.Book:
+    properties:
+      author:
+        type: string
+      id:
+        type: integer
+      imageurl:
+        type: string
+      price:
+        type: number
+      title:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: contact@schmitzi.nz
+    name: Michael Naysmith
+    url: https://schmitzi.nz
+  description: Simple Go REST API with Swagger Documentation
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: Dockerize-Go
+  version: "1.1"
+paths:
+  /:
+    get:
+      operationId: welcomeMessage
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: welcome message
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+      summary: return welcome message
+  /books:
+    get:
+      operationId: getBooks
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Book'
+            type: array
+        "404":
+          description: Library is empty
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get all books
+    post:
+      operationId: addBook
+      parameters:
+      - description: Book object
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/main.Book'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Book'
+      summary: add book to the library
+  /books/{id}:
+    delete:
+      operationId: deleteBooks
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Library is empty
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete book by id
+    get:
+      operationId: getBookByID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Book'
+        "404":
+          description: Book not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get book by ID
+    put:
+      operationId: updateBooks
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Book object
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/main.Book'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Book'
+        "404":
+          description: Library is empty
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: update book by id
+swagger: "2.0"

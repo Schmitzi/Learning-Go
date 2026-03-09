@@ -1,0 +1,36 @@
+services:
+  bookstore:
+    build: .
+    container_name: bookstore
+    env_file:
+      - ./.env
+    depends_on:
+      - postgresql
+    ports:
+      - 8080:8080
+    networks:
+        - bookstore-api
+    restart: unless-stopped
+
+  postgresql:
+    image: postgres:15.17
+    container_name: postgresql
+    env_file:
+      - ./.env
+    networks:
+        - bookstore-api
+    volumes:
+      - bookstore:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+volumes:
+  bookstore:
+    driver: local
+
+networks:
+  bookstore-api:
+    driver: bridge
+
+
+
