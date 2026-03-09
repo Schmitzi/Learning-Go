@@ -1,4 +1,4 @@
-# 01-dockerize-go
+# 03-dockerize-go
 
 This project builds on `01-bookstore-api` by containerising the application using Docker. The Go REST API and PostgreSQL database are orchestrated with docker-compose, allowing the entire stack to be spun up with a single command.
 
