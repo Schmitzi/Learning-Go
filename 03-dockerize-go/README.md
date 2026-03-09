@@ -56,11 +56,11 @@ docker compose up --build
 
 This starts the server listening on the 8080 port. If you want to change it then it needs to be changed in the `docker-compose.yml`
 
-As before, the previous HTTP methods exist. We need to ad `-k` to the curl commands to bypass certificate verification.
+As before, the previous HTTP methods exist. We need to ad `-k` to the curl commands to bypass certificate verification and change HTTP to HTTPS.
 
 - *Add:* Add book to the library
 ```bash
-curl -X POST -k http://localhost:8080/books \
+curl -X POST -k https://localhost:8080/books \
   -H "Content-Type: application/json" \
   -d '{"title":"test_book","author":"Me","price":0,"imageurl":"http://test.com"}'
 ```
@@ -68,10 +68,10 @@ curl -X POST -k http://localhost:8080/books \
 - *Get*: Get all books or book by `id`
 ```bash
 # All books
-curl -k http://localhost:8080/books
+curl -k https://localhost:8080/books
 
 # By ID
-curl -k http://localhost:8080/books/1
+curl -k https://localhost:8080/books/1
 
 # Output
 {"id":1,"title":"test_book","author":"Me","price":0,"imageurl":"http://test.com"}
@@ -79,12 +79,12 @@ curl -k http://localhost:8080/books/1
 
 - *Update*: Update book by `id`
 ```bash
-curl -X PUT -k http://localhost:8080/books/1 \
+curl -X PUT -k https://localhost:8080/books/1 \
   -H "Content-Type: application/json" \
   -d '{"title":"test_book","author":"Me","price":1000,"imageurl":"http://test.com"}'
 ```
 
 - *Delete*: Delete book by `id`
 ```bash
-curl -X DELETE -k http://localhost:8080/books/1
+curl -X DELETE -k https://localhost:8080/books/1
 ```
